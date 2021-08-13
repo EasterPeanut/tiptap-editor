@@ -1,5 +1,4 @@
 import Config
-
 # Configure your database
 config :tiptap, Tiptap.Repo,
   username: "postgres",
