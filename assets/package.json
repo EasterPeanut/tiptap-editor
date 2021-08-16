@@ -5,6 +5,10 @@
   "browserslist": [
     "defaults"
   ],
+  "dependencies": {
+    "@tiptap/core": "*",
+    "@tiptap/starter-kit": "*"
+  },
   "devDependencies": {
     "autoprefixer": "^10.3.1",
     "chokidar": "^3.5.2",
