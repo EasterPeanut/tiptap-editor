@@ -1,1 +1,36 @@
-<div class="element" phx-update="ignore"></div>
+<div phx-update="ignore">
+  <div class="editor" x-data="setupEditor('<p><strong>Hello World! :-)</strong></p>')" x-init="() => init($refs.element)">
+
+    <template class="editor-menu-fixed" x-if="editor">
+      <div class="menu">
+        <button
+          @click="editor.chain().toggleHeading({ level: 1 }).focus().run()"
+          :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }">
+          H1
+        </button>
+        <button
+          @click="editor.chain().toggleHeading({ level: 2 }).focus().run()"
+          :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }">
+          H2
+        </button>
+        <button
+          @click="editor.chain().toggleHeading({ level: 3 }).focus().run()"
+          :class="{ 'is-active': editor.isActive('heading', { level: 3 }) }">
+          H3
+        </button>
+        <button
+          @click="editor.chain().toggleBold().focus().run()"
+          :class="{ 'is-active': editor.isActive('bold') }">
+          Bold
+        </button>
+        <button
+          @click="editor.chain().toggleItalic().focus().run()"
+          :class="{ 'is-active': editor.isActive('italic') }">
+          Italic
+        </button>
+      </div>
+    </template>
+
+    <div x-ref="element"></div>
+  </div>
+</div>
