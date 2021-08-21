@@ -1,31 +1,131 @@
 <div phx-update="ignore" class="editor">
   <div x-data="editor('<p>This is where the content goes</p>')">
+
+    <p>Show shortcuts on over, in title?</p>
+
     <div class="editor-menu-fixed">
-      <button
-        @click="toggleHeading(1)"
-        :class="{ 'is-active' : isActive('heading', { level: 1 }, updatedAt) }">
-        H1
-      </button>
-      <button
-        @click="toggleHeading(2)"
-        :class="{ 'is-active' : isActive('heading', { level: 2 }, updatedAt) }">
-        H2
-      </button>
-      <button
-        @click="toggleHeading(3)"
-        :class="{ 'is-active' : isActive('heading', { level: 3 }, updatedAt) }">
-        H3
-      </button>
-      <button
-        @click="toggleBold()"
-        :class="{ 'is-active' : isActive('bold', updatedAt) }">
-        Bold
-      </button>
-      <button
-        @click="toggleItalic()"
-        :class="{ 'is-active' : isActive('italic', updatedAt) }">
-        Italic
-      </button>
+      <div class="editor-menu-group">
+        <button @click="undo()" title="Undo">Undo</button>
+        <button @click="redo()" title="Redo">Redo</button>
+        <button @click="clearMarkup()" title="Clear all markup of selection">Clear all markup of selection</button>
+      </div>
+      <div class="editor-menu-group">
+        Paragraph and Headings
+        <button
+          @click="setParagraph()"
+          :class="{ 'is-active' : isActive('paragraph', updatedAt) }"
+          title="Paragraph"
+          >
+          Paragraph
+        </button>
+        <button
+          @click="toggleHeading(1)"
+          :class="{ 'is-active' : isActive('heading', { level: 1 }, updatedAt) }"
+          title="Heading 1"
+          >
+          Heading 1
+        </button>
+        <button
+          @click="toggleHeading(2)"
+          :class="{ 'is-active' : isActive('heading', { level: 2 }, updatedAt) }"
+          title="Heading 2"
+          >
+          Heading 2
+        </button>
+        <button
+          @click="toggleHeading(3)"
+          :class="{ 'is-active' : isActive('heading', { level: 3 }, updatedAt) }"
+          title="Heading 3"
+          >
+          Heading 3
+        </button>
+      </div>
+
+      <div class="editor-menu-group">
+        Emphasis
+        <button
+          @click="toggleBold()"
+          :class="{ 'is-active' : isActive('bold', updatedAt) }"
+          title="Bold"
+          >
+          Bold
+        </button>
+        <button
+          @click="toggleItalic()"
+          :class="{ 'is-active' : isActive('italic', updatedAt) }"
+          title="Italic"
+          >
+          Italic
+        </button>
+        <button
+          @click="toggleUnderline()"
+          :class="{ 'is-active' : isActive('underline', updatedAt) }"
+          title="Underline"
+          >
+          Underline
+        </button>
+        <button
+          @click="toggleStrike()"
+          :class="{ 'is-active' : isActive('strike', updatedAt) }"
+          title="Strikethrough"
+          >
+          Strikethrough
+        </button>
+        <button
+          @click="toggleCode()"
+          :class="{ 'is-active' : isActive('code', updatedAt) }"
+          title="Inline Code"
+          >
+          Inline Code
+        </button>
+      </div>
+
+      <div class="editor-menu-group">
+        Blocks and lists
+        <button
+          @click="toggleCodeBlock()"
+          :class="{ 'is-active' : isActive('codeBlock', updatedAt) }"
+          title="Code Block"
+          >
+          Code Block
+        </button>
+        <button
+          @click="toggleBlockquote()"
+          :class="{ 'is-active' : isActive('blockquote', updatedAt) }"
+          title="Blockquote"
+          >
+          Blockquote
+        </button>
+        <button
+          @click="toggleBulletList()"
+          :class="{ 'is-active' : isActive('bulletList', updatedAt) }"
+          title="Bullet List"
+          >
+          Bullet List
+        </button>
+        <button
+          @click="toggleOrderedList()"
+          :class="{ 'is-active' : isActive('orderedList', updatedAt) }"
+          title="Ordered List"
+          >
+          Ordered List
+        </button>
+      </div>
+
+      <div class="editor-menu-group">
+        <button
+          @click="setHorizontalRule()"
+          title="Horizontal Rule"
+          >
+          Horizontal Rule
+        </button>
+        <button
+          @click="setHardBreak()"
+          title="Hard Break"
+          >
+          Hard Break
+        </button>
+      </div>
     </div>
 
     <div x-ref="editorReference"></div>

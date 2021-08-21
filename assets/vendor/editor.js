@@ -1,23 +1,63 @@
 import { Editor } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
+import Underline from '@tiptap/extension-underline'
 
 export default function (content) {
   let editor
 
   return {
+    undo () {
+      editor.chain().focus().undo().run()
+    },
+    redo () {
+      editor.chain().focus().redo().run()
+    },
+    clearMarkup () {
+      editor.chain().focus().clearNodes().unsetAllMarks().run()
+    },
+    setParagraph () {
+      editor.chain().focus().setParagraph().run()
+    },
+    toggleHeading (level) {
+      editor.chain().focus().toggleHeading({ level: level }).run()
+    },
+    toggleBold () {
+      editor.chain().focus().toggleBold().run()
+    },
+    toggleItalic () {
+      editor.chain().focus().toggleItalic().run()
+    },
+    toggleUnderline () {
+      editor.chain().focus().toggleUnderline().run()
+    },
+    toggleStrike () {
+      editor.chain().focus().toggleStrike().run()
+    },
+    toggleCode () {
+      editor.chain().focus().toggleCode().run()
+    },
+    toggleCodeBlock () {
+      editor.chain().focus().toggleCodeBlock().run()
+    },
+    toggleBlockquote () {
+      editor.chain().focus().toggleBlockquote().run()
+    },
+    toggleBulletList () {
+      editor.chain().focus().toggleBulletList().run()
+    },
+    toggleOrderedList () {
+      editor.chain().focus().toggleOrderedList().run()
+    },
+    setHorizontalRule () {
+      editor.chain().focus().setHorizontalRule().run()
+    },
+    setHardBreak () {
+      editor.chain().focus().setHardBreak().run()
+    },
     // Passing updatedAt here to make Alpine rerender the menu buttons.
     // The value of updatedAt will be updated on every Tiptap transaction.
     isActive (type, opts = {}, updatedAt) {
       return editor.isActive(type, opts)
-    },
-    toggleBold () {
-      editor.chain().toggleBold().focus().run()
-    },
-    toggleItalic () {
-      editor.chain().toggleItalic().focus().run()
-    },
-    toggleHeading (level) {
-      editor.chain().toggleHeading({ level: level }).focus().run()
     },
     updatedAt: Date.now(),
     init () {
@@ -30,8 +70,10 @@ export default function (content) {
             heading: {
               levels: [1, 2, 3]
             },
-            mention: false
-          })
+            mention: false,
+            textStyle: false
+          }),
+          Underline
         ],
         content: content,
         onCreate ({ editor }) {
