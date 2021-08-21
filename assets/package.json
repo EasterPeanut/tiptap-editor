@@ -8,7 +8,7 @@
   "dependencies": {
     "@tiptap/core": "*",
     "@tiptap/starter-kit": "*",
-    "alpinejs": "^3.2.3"
+    "alpinejs": "^3.2.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.3.1",
