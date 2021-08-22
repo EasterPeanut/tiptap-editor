@@ -40,7 +40,17 @@ export default function (content) {
       editor.chain().focus().toggleCodeBlock().run()
     },
     toggleBlockquote () {
-      editor.chain().focus().toggleBlockquote().run()
+      if (editor.isActive('bulletList')) {
+        editor.chain().focus().toggleBulletList().run()
+        editor.chain().focus().toggleBlockquote().run()
+        editor.chain().focus().toggleBulletList().run()
+      } else if (editor.isActive('orderedList')) {
+        editor.chain().focus().toggleOrderedList().run()
+        editor.chain().focus().toggleBlockquote().run()
+        editor.chain().focus().toggleOrderedList().run()
+      } else {
+        editor.chain().focus().toggleBlockquote().run()
+      }
     },
     toggleBulletList () {
       editor.chain().focus().toggleBulletList().run()
