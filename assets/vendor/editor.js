@@ -1,5 +1,7 @@
 import { Editor } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
+import BubbleMenu from '@tiptap/extension-bubble-menu'
+import FloatingMenu from '@tiptap/extension-floating-menu'
 import Heading from '@tiptap/extension-heading'
 import Highlight from '@tiptap/extension-highlight'
 import Subscript from '@tiptap/extension-subscript'
@@ -42,6 +44,14 @@ export default function (content) {
             heading: false,
             mention: false,
             textStyle: false
+          }),
+          BubbleMenu.configure({
+            element: document.querySelector('.editor-menu-bubble'),
+            tippyOptions: { duration: 100 }
+          }),
+          FloatingMenu.configure({
+            element: document.querySelector('.editor-menu-floating'),
+            tippyOptions: { duration: 100 }
           }),
           Heading
             .extend({
