@@ -6,6 +6,40 @@ export default function (content) {
   let editor
 
   return {
+    init () {
+      const _this = this
+
+      editor = new Editor({
+        element: _this.$refs.editorReference,
+        extensions: [
+          StarterKit.configure({
+            heading: {
+              levels: [1, 2, 3]
+            },
+            mention: false,
+            textStyle: false
+          }),
+          Underline
+        ],
+        content: content,
+        onCreate ({ editor }) {
+          _this.updatedAt = Date.now()
+        },
+        onUpdate ({ editor }) {
+          _this.updatedAt = Date.now()
+        },
+        onSelectionUpdate ({ editor }) {
+          _this.updatedAt = Date.now()
+        }
+      })
+    },
+    // Passing updatedAt here to make Alpine rerender the menu buttons.
+    // The value of updatedAt will be updated on every Tiptap transaction.
+    isActive (type, opts = {}, updatedAt) {
+      return editor.isActive(type, opts)
+    },
+    updatedAt: Date.now(),
+    // Menu actions/commands:
     undo () {
       editor.chain().focus().undo().run()
     },
@@ -40,17 +74,7 @@ export default function (content) {
       editor.chain().focus().toggleCodeBlock().run()
     },
     toggleBlockquote () {
-      if (editor.isActive('bulletList')) {
-        editor.chain().focus().toggleBulletList().run()
-        editor.chain().focus().toggleBlockquote().run()
-        editor.chain().focus().toggleBulletList().run()
-      } else if (editor.isActive('orderedList')) {
-        editor.chain().focus().toggleOrderedList().run()
-        editor.chain().focus().toggleBlockquote().run()
-        editor.chain().focus().toggleOrderedList().run()
-      } else {
-        editor.chain().focus().toggleBlockquote().run()
-      }
+      editor.chain().focus().toggleBlockquote().run()
     },
     toggleBulletList () {
       editor.chain().focus().toggleBulletList().run()
@@ -63,39 +87,6 @@ export default function (content) {
     },
     setHardBreak () {
       editor.chain().focus().setHardBreak().run()
-    },
-    // Passing updatedAt here to make Alpine rerender the menu buttons.
-    // The value of updatedAt will be updated on every Tiptap transaction.
-    isActive (type, opts = {}, updatedAt) {
-      return editor.isActive(type, opts)
-    },
-    updatedAt: Date.now(),
-    init () {
-      const _this = this
-
-      editor = new Editor({
-        element: this.$refs.editorReference,
-        extensions: [
-          StarterKit.configure({
-            heading: {
-              levels: [1, 2, 3]
-            },
-            mention: false,
-            textStyle: false
-          }),
-          Underline
-        ],
-        content: content,
-        onCreate ({ editor }) {
-          _this.updatedAt = Date.now()
-        },
-        onUpdate ({ editor }) {
-          _this.updatedAt = Date.now()
-        },
-        onSelectionUpdate ({ editor }) {
-          _this.updatedAt = Date.now()
-        }
-      })
     }
   }
 }
