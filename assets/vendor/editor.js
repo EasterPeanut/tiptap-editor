@@ -1,6 +1,9 @@
 import { Editor } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
 import Heading from '@tiptap/extension-heading'
+import Highlight from '@tiptap/extension-highlight'
+import Subscript from '@tiptap/extension-subscript'
+import Superscript from '@tiptap/extension-superscript'
 import Underline from '@tiptap/extension-underline'
 
 // Overwrite the allowed marks of Heading
@@ -26,6 +29,11 @@ export default function (content) {
           CustomHeading.configure({
             levels: [1, 2, 3]
           }),
+          Highlight.configure({
+            multicolor: true
+          }),
+          Subscript,
+          Superscript,
           Underline
         ],
         content: content,
@@ -73,6 +81,15 @@ export default function (content) {
     },
     toggleStrike () {
       editor.chain().focus().toggleStrike().run()
+    },
+    toggleHighlight (color) {
+      editor.chain().focus().toggleHighlight({ color: color }).run()
+    },
+    toggleSubscript () {
+      editor.chain().focus().toggleSubscript().run()
+    },
+    toggleSuperscript () {
+      editor.chain().focus().toggleSuperscript().run()
     },
     toggleCode () {
       editor.chain().focus().toggleCode().run()

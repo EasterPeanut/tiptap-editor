@@ -1,7 +1,5 @@
-<div phx-update="ignore" class="editor">
+<div phx-update="ignore" class="editor editor-output">
   <div x-data="editor('<p>This is where the content goes</p>')">
-
-    <p>Show shortcuts on hover, in title?</p>
 
     <div class="editor-menu-fixed">
       <div class="editor-menu-group">
@@ -70,6 +68,37 @@
           title="Strikethrough"
           >
           Strikethrough
+        </button>
+        <button
+          @click="toggleHighlight()"
+          style="background: #faf594;"
+          :class="{ 'is-active' : isActive('highlight', { color: '#faf594' }, updatedAt) }"
+          title="Highlight"
+          >
+          Highlight
+        </button>
+        <button
+          @click="toggleHighlight('#94fa9a')"
+          style="background: #94fa9a;"
+          :class="{ 'is-active' : isActive('highlight', { color: '#94fa9a' }, updatedAt) }"
+          title="Highlight"
+          >
+          Highlight
+        </button>
+        <br>
+        <button
+          @click="toggleSubscript()"
+          :class="{ 'is-active' : isActive('subscript', updatedAt) }"
+          title="Subscript"
+          >
+          Subscript
+        </button>
+        <button
+          @click="toggleSuperscript()"
+          :class="{ 'is-active' : isActive('superscript', updatedAt) }"
+          title="Superscript"
+          >
+          Superscript
         </button>
         <button
           @click="toggleCode()"
