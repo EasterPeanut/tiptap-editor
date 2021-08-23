@@ -68,20 +68,18 @@
           Strikethrough
         </button>
         <button
-          @click="toggleHighlight()"
-          style="background: #faf594;"
-          :class="{ 'is-active' : isActive('highlight', { color: '#faf594' }, updatedAt) }"
+          @click="toggleHighlight('#fffb91')"
+          :class="{ 'is-active' : isActive('highlight', { color: '#fffb91' }, updatedAt) }"
           title="Highlight"
           >
-          Highlight
+          Highlight <span style="background: #fffb91; height: 1rem; width: 1rem; border: 1px solid grey; display: inline-block;"></span>
         </button>
         <button
           @click="toggleHighlight('#94fa9a')"
-          style="background: #94fa9a;"
           :class="{ 'is-active' : isActive('highlight', { color: '#94fa9a' }, updatedAt) }"
           title="Highlight"
           >
-          Highlight
+          Highlight <span style="background: #94fa9a; height: 1rem; width: 1rem; border: 1px solid grey; display: inline-block;"></span>
         </button>
         <br>
         <button

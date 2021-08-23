@@ -6,11 +6,6 @@ import Subscript from '@tiptap/extension-subscript'
 import Superscript from '@tiptap/extension-superscript'
 import Underline from '@tiptap/extension-underline'
 
-// Overwrite the allowed marks of Heading
-const CustomHeading = Heading.extend({
-  marks: 'bold italic strike underline highlight subscript superscript'
-})
-
 export default function (content) {
   let editor
 
@@ -26,12 +21,26 @@ export default function (content) {
             mention: false,
             textStyle: false
           }),
-          CustomHeading.configure({
-            levels: [1, 2, 3]
-          }),
-          Highlight.configure({
-            multicolor: true
-          }),
+          Heading
+            .extend({
+              // Overwrite the allowed marks of Heading
+              marks: 'bold italic strike underline highlight subscript superscript'
+            })
+            .configure({
+              levels: [1, 2, 3]
+            }),
+          Highlight
+            .extend({
+              // By default set a color if using keyboard shortcut
+              addKeyboardShortcuts () {
+                return {
+                  'Mod-Shift-h': () => this.editor.commands.toggleHighlight({ color: '#fffb91' })
+                }
+              }
+            })
+            .configure({
+              multicolor: true
+            }),
           Subscript,
           Superscript,
           Underline
