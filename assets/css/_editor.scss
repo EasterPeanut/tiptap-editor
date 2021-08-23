@@ -5,7 +5,11 @@
     border-bottom: 1px solid #aaa;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
+  }
 
+  &-menu-fixed,
+  &-menu-bubble,
+  &-menu-floating {
     button {
       background: #f5f5f5;
       border: .1rem solid #aaa;
