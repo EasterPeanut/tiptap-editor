@@ -1,7 +1,7 @@
-<div phx-update="ignore" class="editor editor-output">
+<div phx-update="ignore" class="editor">
   <div x-data="editor('<p>This is where the content goes</p>')">
 
-    <div class="editor-menu-fixed">
+    <div class="editor-menu-fixed centered narrow">
       <div class="editor-menu-group">
         <button @click="undo()" title="Undo">Undo</button>
         <button @click="redo()" title="Redo">Redo</button>
@@ -14,13 +14,6 @@
           title="Paragraph"
           >
           Paragraph
-        </button>
-        <button
-          @click="toggleHeading(1)"
-          :class="{ 'is-active' : isActive('heading', { level: 1 }, updatedAt) }"
-          title="Heading 1"
-          >
-          Heading 1
         </button>
         <button
           @click="toggleHeading(2)"
@@ -81,7 +74,6 @@
           >
           Highlight <span style="background: #94fa9a; height: 1rem; width: 1rem; border: 1px solid grey; display: inline-block;"></span>
         </button>
-        <br>
         <button
           @click="toggleSubscript()"
           :class="{ 'is-active' : isActive('subscript', updatedAt) }"
@@ -154,6 +146,6 @@
       </div>
     </div>
 
-    <div x-ref="editorReference"></div>
+    <div x-ref="editorReference" class="editor-output"></div>
   </div>
 </div>

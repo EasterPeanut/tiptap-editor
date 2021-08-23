@@ -23,79 +23,103 @@
     }
   }
 
+  &-contenteditable {
+    outline: none;
+  }
+
   &-output {
+    font-family: 'Carter';
+    font-size: 2rem;
+    line-height: 1.65;
+
     p {
+      margin-bottom: 1.5rem;
+      margin-top: 1.5rem;
     }
 
-    h1,
-    h2,
+    h2 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
     h3 {
+      font-size: 2rem;
+      font-weight: 700;
     }
 
     strong {
-    }
-
-    em {
-    }
-
-    u {
-    }
-
-    s {
-    }
-
-    mark {
+      font-weight: 700;
     }
 
     blockquote {
+      border-left: .4rem solid #94fa9a;
+      margin-bottom: 1.5rem;
+      margin-top: 1.5rem;
+      padding-left: 2rem;
     }
 
     code {
+      font-size: 1.4rem;
+    }
+
+    :not(pre) code {
+      background: #eee;
+      border-radius: .3rem;
+      margin-left: .1rem;
+      margin-right: .2rem;
+      padding: .3rem .4rem;
     }
 
     pre {
+      background: #000;
+      border-radius: .3rem;
+      padding: .3rem .4rem;
+
+      code {
+        background: none;
+        color: #fff;
+        display: block;
+        overflow-x: scroll;
+        white-space: pre;
+      }
     }
 
     hr {
+      border: 0;
+      height: 1rem;
+      margin-bottom: 3rem;
+      margin-top: 3rem;
+      position: relative;
+
+      &::before {
+        align-items: center;
+        color: #000;
+        content: '. . .';
+        display: inline;
+        display: flex;
+        font-size: 5rem;
+        height: .1rem;
+        justify-content: center;
+        position: absolute;
+        top: -.65rem;
+        width: 100%;
+      }
     }
 
-    a {
-    }
-
-    ol {
-    }
-
-    ul {
-    }
-
-    dl {
-    }
-
-    dd {
-    }
-
-    dt {
-    }
+    a {}
 
     li {
+      p {
+        margin: 0;
+      }
     }
 
-    table {
-    }
+    table {}
+    th {}
+    td {}
+    tr {}
 
-    th {
-    }
-
-    td {
-    }
-
-    tr {
-    }
-
-    figure {
-    }
-
-    img {
-    }
+    figure {}
+    img {}
   }
 }

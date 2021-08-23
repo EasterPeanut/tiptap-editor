@@ -14,9 +14,31 @@ export default function (content) {
       const _this = this
 
       editor = new Editor({
-        element: _this.$refs.editorReference,
+        element: this.$refs.editorReference,
+        content: content,
+        editorProps: {
+          attributes: { class: 'editor-contenteditable' }
+        },
         extensions: [
           StarterKit.configure({
+            blockquote: {
+              HTMLAttributes: { class: 'centered narrow' }
+            },
+            bulletList: {
+              HTMLAttributes: { class: 'centered narrow' }
+            },
+            codeBlock: {
+              HTMLAttributes: { class: 'centered narrow' }
+            },
+            horizontalRule: {
+              HTMLAttributes: { class: 'centered narrow' }
+            },
+            paragraph: {
+              HTMLAttributes: { class: 'centered narrow' }
+            },
+            orderedList: {
+              HTMLAttributes: { class: 'centered narrow' }
+            },
             heading: false,
             mention: false,
             textStyle: false
@@ -27,7 +49,8 @@ export default function (content) {
               marks: 'bold italic strike underline highlight subscript superscript'
             })
             .configure({
-              levels: [1, 2, 3]
+              levels: [2, 3],
+              HTMLAttributes: { class: 'centered narrow' }
             }),
           Highlight
             .extend({
@@ -45,14 +68,13 @@ export default function (content) {
           Superscript,
           Underline
         ],
-        content: content,
-        onCreate ({ editor }) {
+        onCreate () {
           _this.updatedAt = Date.now()
         },
-        onUpdate ({ editor }) {
+        onUpdate () {
           _this.updatedAt = Date.now()
         },
-        onSelectionUpdate ({ editor }) {
+        onSelectionUpdate () {
           _this.updatedAt = Date.now()
         }
       })
