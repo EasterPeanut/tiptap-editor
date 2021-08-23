@@ -1,6 +1,12 @@
 import { Editor } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
+import Heading from '@tiptap/extension-heading'
 import Underline from '@tiptap/extension-underline'
+
+// Overwrite the allowed marks of Heading
+const CustomHeading = Heading.extend({
+  marks: 'bold italic strike underline highlight subscript superscript'
+})
 
 export default function (content) {
   let editor
@@ -13,11 +19,12 @@ export default function (content) {
         element: _this.$refs.editorReference,
         extensions: [
           StarterKit.configure({
-            heading: {
-              levels: [1, 2, 3]
-            },
+            heading: false,
             mention: false,
             textStyle: false
+          }),
+          CustomHeading.configure({
+            levels: [1, 2, 3]
           }),
           Underline
         ],
