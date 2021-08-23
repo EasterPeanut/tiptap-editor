@@ -1,3 +1,102 @@
-.editor-menu-fixed button.is-active {
-  background-color: #036;
+.editor {
+  margin: 4rem 0;
+
+  &-menu-fixed {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+
+    button {
+      background: #f5f5f5;
+      border: .1rem solid #aaa;
+      border-radius: .2rem;
+
+      &:hover {
+        background: #ddd;
+      }
+
+      &.is-active {
+        background: #888;
+        border-color: #000;
+        color: #fff;
+      }
+    }
+  }
+
+  &-output {
+    p {
+    }
+
+    h1,
+    h2,
+    h3 {
+    }
+
+    strong {
+    }
+
+    em {
+    }
+
+    u {
+    }
+
+    s {
+    }
+
+    mark {
+      background: #faf594;
+    }
+
+    blockquote {
+    }
+
+    code {
+    }
+
+    pre {
+    }
+
+    hr {
+    }
+
+    a {
+    }
+
+    ol {
+    }
+
+    ul {
+    }
+
+    dl {
+    }
+
+    dd {
+    }
+
+    dt {
+    }
+
+    li {
+    }
+
+    table {
+    }
+
+    th {
+    }
+
+    td {
+    }
+
+    tr {
+    }
+
+    figure {
+    }
+
+    img {
+    }
+  }
 }

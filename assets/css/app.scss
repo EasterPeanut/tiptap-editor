@@ -1,6 +1,6 @@
 /* This file is for your main application CSS */
-@use 'phoenix.css';
 @use '_base';
+@use '_layout';
 @use '_editor';
 
 /* Alerts and form errors used by phx.new */
