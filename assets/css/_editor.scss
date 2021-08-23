@@ -1,0 +1,125 @@
+.editor {
+  margin: 4rem 0;
+
+  &-menu-fixed {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+
+    button {
+      background: #f5f5f5;
+      border: .1rem solid #aaa;
+      border-radius: .2rem;
+
+      &:hover {
+        background: #ddd;
+      }
+
+      &.is-active {
+        background: #888;
+        border-color: #000;
+        color: #fff;
+      }
+    }
+  }
+
+  &-contenteditable {
+    outline: none;
+  }
+
+  &-output {
+    font-family: 'Carter';
+    font-size: 2rem;
+    line-height: 1.65;
+
+    p {
+      margin-bottom: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    h2 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    blockquote {
+      border-left: .4rem solid #94fa9a;
+      margin-bottom: 1.5rem;
+      margin-top: 1.5rem;
+      padding-left: 2rem;
+    }
+
+    code {
+      font-size: 1.4rem;
+    }
+
+    :not(pre) code {
+      background: #eee;
+      border-radius: .3rem;
+      margin-left: .1rem;
+      margin-right: .2rem;
+      padding: .3rem .4rem;
+    }
+
+    pre {
+      background: #000;
+      border-radius: .3rem;
+      padding: .3rem .4rem;
+
+      code {
+        background: none;
+        color: #fff;
+        display: block;
+        overflow-x: scroll;
+        white-space: pre;
+      }
+    }
+
+    hr {
+      border: 0;
+      height: 1rem;
+      margin-bottom: 3rem;
+      margin-top: 3rem;
+      position: relative;
+
+      &::before {
+        align-items: center;
+        color: #000;
+        content: '. . .';
+        display: inline;
+        display: flex;
+        font-size: 5rem;
+        height: .1rem;
+        justify-content: center;
+        position: absolute;
+        top: -.65rem;
+        width: 100%;
+      }
+    }
+
+    a {}
+
+    li {
+      p {
+        margin: 0;
+      }
+    }
+
+    table {}
+    th {}
+    td {}
+    tr {}
+
+    figure {}
+    img {}
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "description": "",
+  "repository": {},
+  "license": "MIT",
+  "browserslist": [
+    "defaults"
+  ],
+  "dependencies": {
+    "@tiptap/core": "*",
+    "@tiptap/extension-heading": "*",
+    "@tiptap/extension-highlight": "*",
+    "@tiptap/extension-subscript": "*",
+    "@tiptap/extension-superscript": "*",
+    "@tiptap/extension-underline": "*",
+    "@tiptap/starter-kit": "*",
+    "alpinejs": "^3.2.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.3.1",
+    "chokidar": "^3.5.2",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "postcss": "^8.3.6",
+    "postcss-cli": "^8.3.1",
+    "sass": "^1.37.5",
+    "stylelint": "^13.13.1",
+    "stylelint-config-sass-guidelines": "^8.0.0"
+  }
+}

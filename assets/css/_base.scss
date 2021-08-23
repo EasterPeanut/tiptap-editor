@@ -1,0 +1,17 @@
+*,
+*::after,
+*::before { box-sizing: inherit; }
+
+html {
+  box-sizing: border-box;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: tracking(16);
+  line-height: 1.4;
+  margin: 0;
+}
