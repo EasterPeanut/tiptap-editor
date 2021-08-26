@@ -93,10 +93,13 @@ export default function (content) {
         }
       })
     },
-    // Passing updatedAt here to make Alpine rerender the menu buttons.
+    // Passing updatedAt here to make Alpine rerender the buttons.
     // The value of updatedAt will be updated on every Tiptap transaction.
     isActive (type, opts = {}, updatedAt) {
       return editor.isActive(type, opts)
+    },
+    getJSON () {
+      return editor.getJSON()
     },
     updatedAt: Date.now(),
     // Menu actions/commands:

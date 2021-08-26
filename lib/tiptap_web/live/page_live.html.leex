@@ -1,5 +1,5 @@
 <div phx-update="ignore" class="editor">
-  <div x-data="editor('<p>This is where the content goes</p>')">
+  <div x-data="editor({ 'type': 'doc', 'content': [ { 'type': 'paragraph', 'content': [ { 'type': 'text', 'text': 'This is the initial content' } ] } ] })">
     <div class="editor-menu-bubble">
       <button
         @click="toggleBold()"
@@ -210,5 +210,12 @@
     </div>
 
     <div x-ref="editorReference" class="editor-output"></div>
+
+    <div id="save_article_button" phx-hook="SaveEditorContent">
+      <button @click="$dispatch('save', { content: getJSON() })">
+        <%= gettext("Create Article") %>
+      </button>
+    </div>
+
   </div>
 </div>

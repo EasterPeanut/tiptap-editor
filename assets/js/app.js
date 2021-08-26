@@ -24,9 +24,13 @@ import { LiveSocket } from 'phoenix_live_view'
 import Alpine from 'alpinejs'
 import topbar from '../vendor/topbar'
 import setupEditor from '../vendor/editor'
+import SaveEditorContent from '../vendor/hooks/save-editor-content.js'
 
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute('content')
-const liveSocket = new LiveSocket('/live', Socket, { params: { _csrf_token: csrfToken } })
+const liveSocket = new LiveSocket('/live', Socket, {
+  params: { _csrf_token: csrfToken },
+  hooks: { SaveEditorContent: SaveEditorContent }
+})
 
 // Show progress bar on live navigation and form submits
 topbar.config({ barColors: { 0: '#29d' }, shadowColor: 'rgba(0, 0, 0, .3)' })
