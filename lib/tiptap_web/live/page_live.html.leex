@@ -211,11 +211,9 @@
 
     <div x-ref="editorReference" class="editor-output"></div>
 
-    <div id="save_article_button" phx-hook="SaveEditorContent">
-      <button @click="$dispatch('save', { content: getJSON() })">
-        <%= gettext("Create Article") %>
-      </button>
-    </div>
+    <button id="save_article_button" phx-hook="SaveEditorContent">
+      <%= gettext("Create Article") %>
+    </button>
 
   </div>
 </div>

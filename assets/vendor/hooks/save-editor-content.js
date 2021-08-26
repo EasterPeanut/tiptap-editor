@@ -1,7 +1,9 @@
+import { AlpineEditor } from '../editor'
+
 export default {
   mounted () {
-    window.addEventListener('save', (e) => {
-      console.log(e.detail.content)
+    this.el.addEventListener('click', () => {
+      this.pushEvent('save', { content: AlpineEditor.getJSON() })
     })
   }
 }
