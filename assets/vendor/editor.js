@@ -7,6 +7,7 @@ import Highlight from '@tiptap/extension-highlight'
 import Subscript from '@tiptap/extension-subscript'
 import Superscript from '@tiptap/extension-superscript'
 import Underline from '@tiptap/extension-underline'
+import { Figure } from './custom-extensions/figure'
 
 export default function (content) {
   let editor
@@ -52,6 +53,9 @@ export default function (content) {
           FloatingMenu.configure({
             element: document.querySelector('.editor-menu-floating'),
             tippyOptions: { duration: 100 }
+          }),
+          Figure.configure({
+            HTMLAttributes: { class: 'centered narrow' }
           }),
           Heading
             .extend({
@@ -146,6 +150,14 @@ export default function (content) {
     },
     toggleOrderedList () {
       editor.chain().focus().toggleOrderedList().run()
+    },
+    addFigure () {
+      const url = window.prompt('URL')
+      const caption = window.prompt('caption')
+
+      if (url) {
+        editor.chain().focus().setFigure({ src: url, caption }).run()
+      }
     },
     setHorizontalRule () {
       editor.chain().focus().setHorizontalRule().run()

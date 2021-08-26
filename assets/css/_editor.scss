@@ -123,7 +123,19 @@
     td {}
     tr {}
 
-    figure {}
-    img {}
+    figure {
+      > a {
+        display: inline-block;
+        font-size: 0;
+      }
+
+      img {
+      }
+
+      figcaption {
+        color: grey;
+        font-style: italic;
+      }
+    }
   }
 }
