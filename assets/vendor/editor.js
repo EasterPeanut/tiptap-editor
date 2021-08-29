@@ -102,6 +102,9 @@ export const initEditor = function (content) {
       return AlpineEditor.getJSON()
     },
     updatedAt: Date.now(),
+    togglePlaceholder () {
+      this.showPlaceholder = !this.$el.innerText.trim()
+    },
     // Menu actions/commands:
     undo () {
       AlpineEditor.chain().focus().undo().run()

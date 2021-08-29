@@ -2,8 +2,14 @@ import { AlpineEditor } from '../editor'
 
 export default {
   mounted () {
-    this.el.addEventListener('click', () => {
-      this.pushEvent('save', { content: AlpineEditor.getJSON() })
+    const saveButton = this.el.querySelector('.save-button')
+    const h1 = this.el.querySelector('h1')
+
+    saveButton.addEventListener('click', () => {
+      this.pushEvent('save', {
+        title: h1.innerText.trim(),
+        content: AlpineEditor.getJSON()
+      })
     })
   }
 }

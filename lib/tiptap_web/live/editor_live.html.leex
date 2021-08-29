@@ -1,59 +1,15 @@
-<div phx-update="ignore" class="editor">
-  <div x-data="editor({ 'type': 'doc', 'content': [ { 'type': 'paragraph', 'content': [ { 'type': 'text', 'text': 'This is the initial content' } ] } ] })">
-    <div class="editor-menu-bubble">
-      <button
-        @click="toggleBold()"
-        :class="{ 'is-active' : isActive('bold', updatedAt) }"
-        title="Bold"
-        >
-        Bold
-      </button>
-      <button
-        @click="toggleItalic()"
-        :class="{ 'is-active' : isActive('italic', updatedAt) }"
-        title="Italic"
-        >
-        Italic
-      </button>
-      <button
-        @click="toggleUnderline()"
-        :class="{ 'is-active' : isActive('underline', updatedAt) }"
-        title="Underline"
-        >
-        Underline
-      </button>
-      <button
-        @click="toggleCode()"
-        :class="{ 'is-active' : isActive('code', updatedAt) }"
-        title="Inline Code"
-        >
-        Inline Code
-      </button>
-    </div>
-
-    <div class="editor-menu-floating">
-      <button
-        @click="setParagraph()"
-        :class="{ 'is-active' : isActive('paragraph', updatedAt) }"
-        title="Paragraph"
-        >
-        Paragraph
-      </button>
-      <button
-        @click="toggleHeading(2)"
-        :class="{ 'is-active' : isActive('heading', { level: 2 }, updatedAt) }"
-        title="Heading 2"
-        >
-        Heading 2
-      </button>
-      <button
-        @click="toggleHeading(3)"
-        :class="{ 'is-active' : isActive('heading', { level: 3 }, updatedAt) }"
-        title="Heading 3"
-        >
-        Heading 3
-      </button>
-    </div>
+<div id="editor" class="editor" phx-update="ignore" phx-hook="SaveEditorContent">
+  <div x-data="editor(<%= @article.content %>)">
+    <h1
+      class="centered narrow"
+      contenteditable="true"
+      placeholder="Article Title"
+      x-data="{ 'showPlaceholder' : <%= is_nil(@article.title) %> }"
+      :class="{ 'show-placeholder' : showPlaceholder }"
+      @input="togglePlaceholder()"
+      >
+      <%= @article.title %>
+    </h1>
 
     <div class="editor-menu-fixed centered narrow">
       <div class="editor-menu-group">
@@ -211,9 +167,31 @@
 
     <div x-ref="editorReference" class="editor-output"></div>
 
-    <button id="save_article_button" phx-hook="SaveEditorContent">
-      <%= gettext("Create Article") %>
-    </button>
+    <div class="centered narrow">
+      <%= link "Back", to: Routes.article_path(@socket, :index) %>
+      <button class="save-button">
+        <%= @save_button_text %>
+      </button>
+    </div>
 
   </div>
 </div>
+
+<%= if assigns[:changeset] do %>
+  <div class="centered narrow">
+    <%
+      errors = Ecto.Changeset.traverse_errors(@changeset, fn {msg, opts} ->
+        Enum.reduce(opts, msg, fn {key, value}, acc ->
+          String.replace(acc, "%{#{key}}", to_string(value))
+        end)
+      end)
+    %>
+
+    <%= for {key, field_errors} <- errors do %>
+      <%= "#{key}:" %>
+      <%= for field_error <- field_errors do %>
+        <%= "#{field_error}" %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
