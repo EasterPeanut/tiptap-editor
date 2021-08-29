@@ -8,7 +8,8 @@ export default {
     saveButton.addEventListener('click', () => {
       this.pushEvent('save', {
         title: h1.innerText.trim(),
-        content: AlpineEditor.getJSON()
+        content_json: AlpineEditor.getJSON(),
+        content_html: AlpineEditor.getHTML()
       })
     })
   }

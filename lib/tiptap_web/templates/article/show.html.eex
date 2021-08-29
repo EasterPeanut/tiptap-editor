@@ -2,7 +2,7 @@
  <div class="editor">
     <h1><%= @article.title %></h1>
     <div class="editor-output">
-      <%= @article.content %>
+      <%= raw(@article.content) %>
     </div>
 
     <%= link "Back", to: Routes.article_path(@conn, :index) %>

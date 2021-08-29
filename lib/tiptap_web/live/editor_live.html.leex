@@ -1,5 +1,5 @@
 <div id="editor" class="editor" phx-update="ignore" phx-hook="SaveEditorContent">
-  <div x-data="editor(<%= @article.content %>)">
+  <div x-data="editor(<%= @article.content_json %>)">
     <h1
       class="centered narrow"
       contenteditable="true"

@@ -19,11 +19,16 @@ defmodule TiptapWeb.EditorLive do
   @impl true
   def handle_event(
         "save",
-        %{"title" => title, "content" => json},
+        %{"title" => title, "content_json" => content_json, "content_html" => content},
         %{assigns: %{article: %{id: nil} = article}} = socket
       ) do
-    with {:ok, article} <-
-           Learnables.create_article(%{title: title, content: Jason.encode!(json)}) do
+    attrs = %{
+      title: title,
+      content: content,
+      content_json: Jason.encode!(content_json)
+    }
+
+    with {:ok, article} <- Learnables.create_article(attrs) do
       {:noreply, redirect(socket, to: Routes.article_path(socket, :index))}
     else
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -34,11 +39,17 @@ defmodule TiptapWeb.EditorLive do
   @impl true
   def handle_event(
         "save",
-        %{"title" => title, "content" => json},
+        %{"title" => title, "content_json" => content_json, "content_html" => content},
         %{assigns: %{article: article}} = socket
       ) do
+    attrs = %{
+      title: title,
+      content: content,
+      content_json: Jason.encode!(content_json)
+    }
+
     with {:ok, article} <-
-           Learnables.update_article(article, %{title: title, content: Jason.encode!(json)}) do
+           Learnables.update_article(article, attrs) do
       {:noreply, redirect(socket, to: Routes.article_path(socket, :index))}
     else
       {:error, %Ecto.Changeset{} = changeset} ->
