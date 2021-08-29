@@ -11,6 +11,61 @@
       <%= @article.title %>
     </h1>
 
+    <div class="editor-menu-bubble">
+      <button
+        @click="toggleBold()"
+        :class="{ 'is-active' : isActive('bold', updatedAt) }"
+        title="Bold"
+        >
+        Bold
+      </button>
+      <button
+        @click="toggleItalic()"
+        :class="{ 'is-active' : isActive('italic', updatedAt) }"
+        title="Italic"
+        >
+        Italic
+      </button>
+      <button
+        @click="toggleUnderline()"
+        :class="{ 'is-active' : isActive('underline', updatedAt) }"
+        title="Underline"
+        >
+        Underline
+      </button>
+      <button
+        @click="toggleCode()"
+        :class="{ 'is-active' : isActive('code', updatedAt) }"
+        title="Inline Code"
+        >
+        Inline Code
+      </button>
+    </div>
+
+    <div class="editor-menu-floating">
+      <button
+        @click="setParagraph()"
+        :class="{ 'is-active' : isActive('paragraph', updatedAt) }"
+        title="Paragraph"
+        >
+        Paragraph
+      </button>
+      <button
+        @click="toggleHeading(2)"
+        :class="{ 'is-active' : isActive('heading', { level: 2 }, updatedAt) }"
+        title="Heading 2"
+        >
+        Heading 2
+      </button>
+      <button
+        @click="toggleHeading(3)"
+        :class="{ 'is-active' : isActive('heading', { level: 3 }, updatedAt) }"
+        title="Heading 3"
+        >
+        Heading 3
+      </button>
+    </div>
+
     <div class="editor-menu-fixed centered narrow">
       <div class="editor-menu-group">
         <button @click="undo()" title="Undo">Undo</button>
