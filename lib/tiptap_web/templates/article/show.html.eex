@@ -1,0 +1,12 @@
+<div class="centered narrow">
+ <div class="editor">
+    <h1><%= @article.title %></h1>
+    <div class="editor-output">
+      <%= raw(@article.content) %>
+    </div>
+
+    <%= link "Back", to: Routes.article_path(@conn, :index) %>
+    <%= link "Edit", to: Routes.editor_path(@conn, :edit, @article) %>
+    <%= link "Delete", to: Routes.article_path(@conn, :delete, @article), method: :delete, data: [confirm: "Are you sure?"] %>
+  </div>
+</div>

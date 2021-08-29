@@ -7,15 +7,16 @@ import Highlight from '@tiptap/extension-highlight'
 import Subscript from '@tiptap/extension-subscript'
 import Superscript from '@tiptap/extension-superscript'
 import Underline from '@tiptap/extension-underline'
+import { Figure } from './custom-extensions/figure'
 
-export default function (content) {
-  let editor
+export let AlpineEditor
 
+export const initEditor = function (content) {
   return {
     init () {
       const _this = this
 
-      editor = new Editor({
+      AlpineEditor = new Editor({
         element: this.$refs.editorReference,
         content: content,
         editorProps: {
@@ -53,6 +54,9 @@ export default function (content) {
             element: document.querySelector('.editor-menu-floating'),
             tippyOptions: { duration: 100 }
           }),
+          Figure.configure({
+            HTMLAttributes: { class: 'centered narrow' }
+          }),
           Heading
             .extend({
               // Overwrite the allowed marks of Heading
@@ -89,69 +93,83 @@ export default function (content) {
         }
       })
     },
-    // Passing updatedAt here to make Alpine rerender the menu buttons.
+    // Passing updatedAt here to make Alpine rerender the buttons.
     // The value of updatedAt will be updated on every Tiptap transaction.
     isActive (type, opts = {}, updatedAt) {
-      return editor.isActive(type, opts)
+      return AlpineEditor.isActive(type, opts)
+    },
+    getJSON () {
+      return AlpineEditor.getJSON()
     },
     updatedAt: Date.now(),
+    togglePlaceholder () {
+      this.showPlaceholder = !this.$el.innerText.trim()
+    },
     // Menu actions/commands:
     undo () {
-      editor.chain().focus().undo().run()
+      AlpineEditor.chain().focus().undo().run()
     },
     redo () {
-      editor.chain().focus().redo().run()
+      AlpineEditor.chain().focus().redo().run()
     },
     clearMarkup () {
-      editor.chain().focus().clearNodes().unsetAllMarks().run()
+      AlpineEditor.chain().focus().clearNodes().unsetAllMarks().run()
     },
     setParagraph () {
-      editor.chain().focus().setParagraph().run()
+      AlpineEditor.chain().focus().setParagraph().run()
     },
     toggleHeading (level) {
-      editor.chain().focus().toggleHeading({ level: level }).run()
+      AlpineEditor.chain().focus().toggleHeading({ level: level }).run()
     },
     toggleBold () {
-      editor.chain().focus().toggleBold().run()
+      AlpineEditor.chain().focus().toggleBold().run()
     },
     toggleItalic () {
-      editor.chain().focus().toggleItalic().run()
+      AlpineEditor.chain().focus().toggleItalic().run()
     },
     toggleUnderline () {
-      editor.chain().focus().toggleUnderline().run()
+      AlpineEditor.chain().focus().toggleUnderline().run()
     },
     toggleStrike () {
-      editor.chain().focus().toggleStrike().run()
+      AlpineEditor.chain().focus().toggleStrike().run()
     },
     toggleHighlight (color) {
-      editor.chain().focus().toggleHighlight({ color: color }).run()
+      AlpineEditor.chain().focus().toggleHighlight({ color: color }).run()
     },
     toggleSubscript () {
-      editor.chain().focus().toggleSubscript().run()
+      AlpineEditor.chain().focus().toggleSubscript().run()
     },
     toggleSuperscript () {
-      editor.chain().focus().toggleSuperscript().run()
+      AlpineEditor.chain().focus().toggleSuperscript().run()
     },
     toggleCode () {
-      editor.chain().focus().toggleCode().run()
+      AlpineEditor.chain().focus().toggleCode().run()
     },
     toggleCodeBlock () {
-      editor.chain().focus().toggleCodeBlock().run()
+      AlpineEditor.chain().focus().toggleCodeBlock().run()
     },
     toggleBlockquote () {
-      editor.chain().focus().toggleBlockquote().run()
+      AlpineEditor.chain().focus().toggleBlockquote().run()
     },
     toggleBulletList () {
-      editor.chain().focus().toggleBulletList().run()
+      AlpineEditor.chain().focus().toggleBulletList().run()
     },
     toggleOrderedList () {
-      editor.chain().focus().toggleOrderedList().run()
+      AlpineEditor.chain().focus().toggleOrderedList().run()
+    },
+    addFigure () {
+      const url = window.prompt('URL')
+      const caption = window.prompt('caption')
+
+      if (url) {
+        AlpineEditor.chain().focus().setFigure({ src: url, caption }).run()
+      }
     },
     setHorizontalRule () {
-      editor.chain().focus().setHorizontalRule().run()
+      AlpineEditor.chain().focus().setHorizontalRule().run()
     },
     setHardBreak () {
-      editor.chain().focus().setHardBreak().run()
+      AlpineEditor.chain().focus().setHardBreak().run()
     }
   }
 }

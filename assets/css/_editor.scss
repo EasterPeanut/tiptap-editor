@@ -1,6 +1,14 @@
 .editor {
   margin: 4rem 0;
 
+  .show-placeholder::before {
+    color: #aaa;
+    content: attr(placeholder);
+    display: block;
+    pointer-events: none;
+    position: absolute;
+  }
+
   &-menu-fixed {
     border-bottom: 1px solid #aaa;
     margin-bottom: 2rem;
@@ -31,6 +39,14 @@
     outline: none;
   }
 
+  h1 {
+    font-family: 'Carter';
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
   &-output {
     font-family: 'Carter';
     font-size: 2rem;
@@ -40,6 +56,7 @@
       margin-bottom: 1.5rem;
       margin-top: 1.5rem;
     }
+    
 
     h2 {
       font-size: 3rem;
@@ -123,7 +140,19 @@
     td {}
     tr {}
 
-    figure {}
-    img {}
+    figure {
+      > a {
+        display: inline-block;
+        font-size: 0;
+      }
+
+      img {
+      }
+
+      figcaption {
+        color: grey;
+        font-style: italic;
+      }
+    }
   }
 }

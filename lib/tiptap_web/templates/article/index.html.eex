@@ -1,0 +1,28 @@
+<div class="centered narrow">
+  <h1>Articles</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+  <%= for article <- @articles do %>
+      <tr>
+        <td><%= article.title %></td>
+
+        <td>
+          <span><%= link "Show", to: Routes.article_path(@conn, :show, article) %></span>
+          <span><%= link "Edit", to: Routes.editor_path(@conn, :edit, article) %></span>
+          <span><%= link "Delete", to: Routes.article_path(@conn, :delete, article), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
+
+  <span><%= link "New Article", to: Routes.editor_path(@conn, :new) %></span>
+</div>

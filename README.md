@@ -1,5 +1,4 @@
-# tiptap-editor
-
+# Tiptap
 Tiptap editor with alpinejs in phoenix/elixir app.
 
 To start your Phoenix server:

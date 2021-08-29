@@ -17,7 +17,13 @@ defmodule TiptapWeb.Router do
   scope "/", TiptapWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    get "/", ArticleController, :index
+
+    live "/articles/new", EditorLive, :new
+    live "/articles/:id/edit", EditorLive, :edit
+
+    get "/articles/:id", ArticleController, :show
+    delete "/articles/:id", ArticleController, :delete
   end
 
   # Other scopes may use custom stacks.

@@ -11,6 +11,7 @@
     "@tiptap/extension-floating-menu": "*",
     "@tiptap/extension-heading": "*",
     "@tiptap/extension-highlight": "*",
+    "@tiptap/extension-image": "*",
     "@tiptap/extension-subscript": "*",
     "@tiptap/extension-superscript": "*",
     "@tiptap/extension-underline": "*",
